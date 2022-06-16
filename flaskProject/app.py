@@ -10,18 +10,10 @@ def form():
     return render_template('form.html')
 
 
-number = 0
-
-
 @app.route('/', methods=['POST'])
 def form_post():
-    number = request.form['number']
-    return number
-
-
-@app.route('/number')
-def calc():
-    return int(number) / 1.2
+    number = int(request.form['number'])
+    return str(number / 1.2)
 
 
 if __name__ == '__main__':
