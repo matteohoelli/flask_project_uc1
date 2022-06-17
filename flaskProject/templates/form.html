@@ -2,12 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>First Template Example</title>
+    <title>Lohnverrechner</title>
 </head>
 <body>
-<form method="POST">
+<form id="sectionForm" method="POST" style="text-align: center; padding-top: 300px">
+    <input type="checkbox" name="netto" value="netto"> Auf Netto umrechnen
+    <br>
+    <br>
+    <input type="checkbox" name="brutto" value="brutto"> Auf Brutto umrechnen
+    <br>
+    <br>
     <input type="number" name="number">
+    <br>
+    <br>
     <input type="submit">
 </form>
 </body>
 </html>
+
+<script type='text/javascript'>
+
+(function() {
+    const form = document.querySelector('#sectionForm');
+    const checkboxes = form.querySelectorAll('input[type=checkbox]');
+    const checkboxLength = checkboxes.length;
+    const firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null;
+
+    function init() {
+        if (firstCheckbox) {
+            for (let i = 0; i < checkboxLength; i++) {
+                checkboxes[i].addEventListener('change', checkValidity);
+            }
+
+            checkValidity();
+        }
+    }
+
+    function isChecked() {
+        for (let i = 0; i < checkboxLength; i++) {
+            if (checkboxes[i].checked) return true;
+        }
+
+        return false;
+    }
+
+    function checkValidity() {
+        const errorMessage = !isChecked() ? 'Eine Option waehlen!' : '';
+        firstCheckbox.setCustomValidity(errorMessage);
+    }
+
+    init();
+})();
+
+</script>
