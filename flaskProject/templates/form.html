@@ -3,24 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lohnverrechner</title>
-</head>
-<body>
-<form id="sectionForm" method="POST" style="text-align: center; padding-top: 300px">
-    <input type="checkbox" name="netto" value="netto"> Auf Netto umrechnen
-    <br>
-    <br>
-    <input type="checkbox" name="brutto" value="brutto"> Auf Brutto umrechnen
-    <br>
-    <br>
-    <input type="number" name="number">
-    <br>
-    <br>
-    <input type="submit">
-</form>
-</body>
-</html>
-
-<script type='text/javascript'>
+    <script>
 
 (function() {
     const form = document.querySelector('#sectionForm');
@@ -53,5 +36,27 @@
 
     init();
 })();
-
-</script>
+    function selectOnlyThis(id) {
+        for (let i = 1;i <= 2; i++)
+        {
+            document.getElementById("Check" + i).checked = false;
+        }
+        document.getElementById(id).checked = true;
+    }
+    </script>
+</head>
+<body>
+<form id="sectionForm" method="POST" style="text-align: center; padding-top: 300px">
+    <input type="checkbox" name="netto" value="netto" id="Check1" onclick="selectOnlyThis(this.id);"> Auf Netto umrechnen
+    <br>
+    <br>
+    <input type="checkbox" name="brutto" value="brutto" id="Check2" onclick="selectOnlyThis(this.id);"> Auf Brutto umrechnen
+    <br>
+    <br>
+    <input type="number" name="number">
+    <br>
+    <br>
+    <input type="submit">
+</form>
+</body>
+</html>
